@@ -11,6 +11,7 @@ namespace ProjetoMVC.Context
     {
         public ProjetoMVCContext()
             :base("ProjetoMVCContext")
+            //:base("ProjetoMVCHome")
         {
 
         }
