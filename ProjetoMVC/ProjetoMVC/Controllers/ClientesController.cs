@@ -18,6 +18,9 @@ namespace ProjetoMVC.Controllers
         public ActionResult Teste()
         {
             ViewBag.Ola = "<h2>Olá</h2>";
+
+            ViewBag.Id = new SelectList(db.Cliente.ToList(), "Id", "Nome", 1);// vai vir pre definido com o ID 1
+
             return View(db.Cliente.ToList());
         }
 

@@ -9,11 +9,11 @@
 
 <div>@Html.Raw(ViewBag.Ola)</div>
 
-@{ 
+@{
     foreach (var cliente in Model)
     {
         <div>@Html.Hidden("Id", cliente.Id)</div>
-        <div>@Html.Label("txtNome","Nome: ", new { text = "Nome: ", @class = "control-label col-md-2"})</div>
+        <div>@Html.Label("txtNome", "Nome: ", new { text = "Nome: ", @class = "control-label col-md-2" })</div>
 
         <div>
             @Html.TextBox("txtNome", cliente.Nome)
@@ -22,7 +22,7 @@
         </div>
 
         <div>@Html.TextArea("txtNome2", new { rows = 5 })</div>
-        <div>@Html.ActionLink("Clique Aqui", "Edit", new { cliente.Id})</div>
+        <div>@Html.ActionLink("Clique Aqui", "Edit", new { cliente.Id })</div>
 
         @*<div>@Html.Action("Edit", "Clientes", new { cliente.Id})</div>*@ // traz a View inteira para a tela q chama este metodo
 
@@ -35,7 +35,62 @@
             @Html.RadioButton("corFavorita", "Amarelo", false) Amarelo
             @Html.RadioButton("corFavorita", "Verde", false) Preto
         </div>
+
+        <div>
+            @Html.ListBox("ListaCores",
+            new SelectList(new List<string>()
+            {
+                "Azul",
+                "Amarelo",
+                "Preto"
+            }))
+        </div>
+
+        <div>
+            @Html.DropDownList("drpListCores",
+                new SelectList(
+                    new List<string>()
+                    {
+                        "Azul",
+                        "Amarelo",
+                        "Preto"
+                    }))
+        </div>
+
+        <div>
+            @Html.DropDownListFor(c => cliente.Nome,
+            new SelectList(Model, "id", "Nome"))
+        </div>
+
+        <div>
+            @Html.DropDownList("Id", String.Empty)
+        </div>
+
+        <div>
+            @Html.CheckBox("Certificado", false) Desejo receber Certificado
+        </div>
+
+        @*<div>
+                @Html.CheckBoxFor(c => cliente.Id) Desejo receber Certificado
+            </div>*@
+
+
+
+
+        <div>
+            @{
+                var teste = Html.Partial("_Saudacao");// usar este
+            }
+            @*@Html.Partial("_Saudacao")*@
+        </div>
+        <div>
+            @{
+                Html.RenderPartial("_Saudacao");
+            }
+
+        </div>
+        <div>
+            <a href="@Url.Action("Index", "Home")">Clique Aqui!</a>
+        </div>
     }
-
-
 }
