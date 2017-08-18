@@ -1,7 +1,41 @@
-﻿@model IEnumerable<ProjetoMVC.Models.Cliente>
+﻿@using System.Web.UI.WebControls;
+@model IEnumerable<ProjetoMVC.Models.Cliente>
 @{
     ViewBag.Title = "Teste";
+    //codigo
 }
 
-<h2>Teste</h2>
+@*Comentarios*@
 
+<div>@Html.Raw(ViewBag.Ola)</div>
+
+@{ 
+    foreach (var cliente in Model)
+    {
+        <div>@Html.Hidden("Id", cliente.Id)</div>
+        <div>@Html.Label("txtNome","Nome: ", new { text = "Nome: ", @class = "control-label col-md-2"})</div>
+
+        <div>
+            @Html.TextBox("txtNome", cliente.Nome)
+            @Html.TextBoxFor(model => cliente.Nome)
+            @Html.EditorFor(model => cliente.Nome)
+        </div>
+
+        <div>@Html.TextArea("txtNome2", new { rows = 5 })</div>
+        <div>@Html.ActionLink("Clique Aqui", "Edit", new { cliente.Id})</div>
+
+        @*<div>@Html.Action("Edit", "Clientes", new { cliente.Id})</div>*@ // traz a View inteira para a tela q chama este metodo
+
+        <div>@Html.LabelFor(model => cliente.Nome)</div>
+        <div>@Html.DisplayNameFor(model => model.Nome)</div>
+        <div>@Html.DisplayFor(model => cliente.Nome)</div>
+
+        <div>
+            @Html.RadioButton("corFavorita", "Azul", true) Azul
+            @Html.RadioButton("corFavorita", "Amarelo", false) Amarelo
+            @Html.RadioButton("corFavorita", "Verde", false) Preto
+        </div>
+    }
+
+
+}

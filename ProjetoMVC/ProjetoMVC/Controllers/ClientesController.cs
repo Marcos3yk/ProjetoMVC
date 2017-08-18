@@ -17,6 +17,7 @@ namespace ProjetoMVC.Controllers
 
         public ActionResult Teste()
         {
+            ViewBag.Ola = "<h2>Olá</h2>";
             return View(db.Cliente.ToList());
         }
 
