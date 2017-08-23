@@ -24,6 +24,14 @@ namespace ProjetoMVC.Controllers
             return View(db.Cliente.ToList());
         }
 
+        [OutputCache(Duration = 30, VaryByParam = "id")]
+        public ContentResult Teste2()
+        {
+            //return Json(db.Cliente.ToList(), JsonRequestBehavior.AllowGet);
+            //return JavaScript("<script>alert('olá');</script>");
+            return Content(DateTime.Now.ToString());
+            
+        }
         // GET: Clientes
         public ActionResult Index()
         {
